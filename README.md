@@ -1,9 +1,7 @@
 <div align="center">
 
-  <img src="https://raw.githubusercontent.com/MIRA-MMDeepResearch/MIRA-MMDeepResearch.github.io/main/assets/joyagent_mira_logo_512.png" alt="MIRA" width="22%">
+  <img src="assets/mira-logo.png" alt="MIRA" width="22%">
   <h1>MIRA: A Multimodal Illustrated Deep Research Agent for Controllable Reports</h1>
-
-  <p><b>Multimodal Deep Research &nbsp;·&nbsp; Controllable Illustrated Reports &nbsp;·&nbsp; MIRA-Harness</b></p>
 
   [![Paper](https://img.shields.io/badge/Paper-DA291C?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2610.25926)
   [![HF Papers](https://img.shields.io/badge/HF_Papers-8F1D14?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/papers/2610.25926)
@@ -19,17 +17,40 @@
 
 ---
 
-## 🚧 Code coming soon in the following week
+## Setup
 
-The model weights and training data are already available on Hugging Face:
+Use Python 3.10 or later on Linux.
 
-| Resource | Link |
-| --- | --- |
-| 🤗 Model | [MIRA-SFT-35B-A3B](https://huggingface.co/MIRA-MMDeepResearch/MIRA-SFT-35B-A3B) |
-| 📊 Harness data | [MIRA-Harness-Data-4K](https://huggingface.co/datasets/MIRA-MMDeepResearch/MIRA-Harness-Data-4K) |
-| 📊 General data | [MIRA-General-Data-20K](https://huggingface.co/datasets/MIRA-MMDeepResearch/MIRA-General-Data-20K) |
+```bash
+pip install -r requirements.txt
+cp configs/secrets.example.yaml configs/secrets.yaml
+```
 
-## 📄 Citation
+Configure your model name, OpenAI-compatible API endpoint, tokenizer directory and sandbox endpoint in [configs/mira.yaml](configs/mira.yaml), and your API keys in `configs/secrets.yaml`.
+
+Python execution uses [SandboxFusion](https://bytedance.github.io/SandboxFusion/) with Pillow and NumPy.
+
+Reverse image search uploads images to the public host configured by `image.lens_upload_endpoint` (Uguu by default).
+
+## Run
+
+Create a JSONL file with one request per line:
+
+```json
+{"id":"example","question":"What is shown in these images?","images":["image1.jpg","image2.jpg"]}
+```
+
+Image paths are relative to the input file; HTTP(S) URLs and image data URLs are also supported. Omit `images` for text-only requests.
+
+```bash
+python -m mira.infer --input requests.jsonl --output workspace/run --workers 4
+```
+
+Answers and trajectories are written to `workspace/run/results.jsonl`. Use a new output directory for each run. Each request runs once; failures are recorded and cause a nonzero exit status.
+
+The research system prompt is in [prompt.py](mira/agent/prompts/prompt.py). The paper's report-contract prompt is preserved in [harness.py](mira/agent/prompts/harness.py) for reference; it requires a `submit_report` gate, which this four-tool runner does not implement.
+
+## Citation
 
 ```bibtex
 @article{mira2026,
@@ -39,3 +60,7 @@ The model weights and training data are already available on Hugging Face:
   year    = {2026}
 }
 ```
+
+## License
+
+Apache-2.0. See [THIRD_PARTY.md](THIRD_PARTY.md).
