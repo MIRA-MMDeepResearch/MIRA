@@ -15,8 +15,6 @@
   [![Model License](https://img.shields.io/badge/Model_License-Apache_2.0-DA291C.svg)](https://huggingface.co/MIRA-MMDeepResearch/MIRA-SFT-35B-A3B)
   [![Data License](https://img.shields.io/badge/Data_License-CC_BY--NC_4.0-8F1D14.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
   [![arXiv](https://img.shields.io/badge/arXiv-2610.25926-B31B1B.svg)](https://arxiv.org/abs/2610.25926)
-  ![](https://img.shields.io/github/last-commit/MIRA-MMDeepResearch/MIRA?color=555555)
-  [![Stars](https://img.shields.io/github/stars/MIRA-MMDeepResearch/MIRA?style=social)](https://github.com/MIRA-MMDeepResearch/MIRA)
 
 </div>
 
