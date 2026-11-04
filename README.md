@@ -8,7 +8,6 @@
   [![Paper](https://img.shields.io/badge/Paper-DA291C?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2610.25926)
   [![HF Papers](https://img.shields.io/badge/HF_Papers-8F1D14?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/papers/2610.25926)
   [![Project Page](https://img.shields.io/badge/Project_Page-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mira-mmdeepresearch.github.io/)
-  [![Github](https://img.shields.io/badge/MIRA-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/MIRA-MMDeepResearch/MIRA)
   [![Model](https://img.shields.io/badge/MIRA--SFT--35B--A3B-DA291C?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/MIRA-MMDeepResearch/MIRA-SFT-35B-A3B)
   [![Data](https://img.shields.io/badge/MIRA_Data-DA291C?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/MIRA-MMDeepResearch)
 
