@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+configs/secrets.yaml
+workspace/
+.venv/
+.env
+.env.*
+*.key
+*.pem
+*.log
+.ruff_cache/
+.pytest_cache/

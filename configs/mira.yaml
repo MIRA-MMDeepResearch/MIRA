@@ -1,0 +1,39 @@
+model:
+  name: MIRA
+  api_base: http://localhost:8000/v1
+  variant: search_open_find
+  tools: browser.search,browser.open,browser.find,PythonInterpreter
+  tool_choice: none
+  chat_template_kwargs: '{"enable_thinking": true, "preserve_thinking": true}'
+  llm_temperature: 1.0
+  llm_top_p: 0.95
+  llm_top_k: 20
+  llm_presence_penalty: 1.5
+  llm_max_tokens: 32768
+  llm_call_timeout_minutes: 0
+
+context:
+  strategy: discard_all
+  threshold: 131072
+  tokenizer_path: ${MODELS_ROOT}/MIRA-SFT-35B-A3B
+  max_turn: 100
+
+prompt:
+  system_prompt_name: search
+
+cache:
+  dir: ${OUTPUT_DIR}/visit_cache
+  global_dir: ${OUTPUT_DIR}/tool_cache
+
+infra:
+  task_log_dir: ${OUTPUT_DIR}/logs
+  sandbox_fusion_endpoint: http://localhost:8080
+  image_workspace_enabled: true
+  reverse_image_search_enabled: true
+  reverse_image_pixel_feedback_enabled: true
+  page_image_open_enabled: true
+  page_image_pixel_feedback_enabled: true
+  python_image_auto_feedback_enabled: false
+
+image:
+  lens_upload_endpoint: https://uguu.se/upload
