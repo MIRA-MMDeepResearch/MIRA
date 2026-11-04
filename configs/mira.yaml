@@ -1,6 +1,6 @@
 model:
   name: MIRA
-  api_base: http://localhost:8000/v1
+  api_base: YOUR_MODEL_API_BASE
   variant: search_open_find
   tools: browser.search,browser.open,browser.find,PythonInterpreter
   tool_choice: none
@@ -15,7 +15,7 @@ model:
 context:
   strategy: discard_all
   threshold: 131072
-  tokenizer_path: ${MODELS_ROOT}/MIRA-SFT-35B-A3B
+  tokenizer_path: /path/to/tokenizer
   max_turn: 100
 
 prompt:
@@ -27,7 +27,7 @@ cache:
 
 infra:
   task_log_dir: ${OUTPUT_DIR}/logs
-  sandbox_fusion_endpoint: http://localhost:8080
+  sandbox_fusion_endpoint: YOUR_SANDBOXFUSION_ENDPOINT
   image_workspace_enabled: true
   reverse_image_search_enabled: true
   reverse_image_pixel_feedback_enabled: true

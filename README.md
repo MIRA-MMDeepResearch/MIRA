@@ -1,35 +1,36 @@
-# MIRA
+<div align="center">
 
-Inference code for [MIRA](https://arxiv.org/abs/2610.25926) and [MIRA-SFT-35B-A3B](https://huggingface.co/MIRA-MMDeepResearch/MIRA-SFT-35B-A3B): one ReAct agent with browser search, open, find and image-aware Python execution.
+  <img src="assets/mira-logo.png" alt="MIRA" width="22%">
+  <h1>MIRA: A Multimodal Illustrated Deep Research Agent for Controllable Reports</h1>
+
+  <p><b>Multimodal Deep Research &nbsp;·&nbsp; Controllable Illustrated Reports &nbsp;·&nbsp; MIRA-Harness</b></p>
+
+  [![Paper](https://img.shields.io/badge/Paper-DA291C?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2610.25926)
+  [![HF Papers](https://img.shields.io/badge/HF_Papers-8F1D14?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/papers/2610.25926)
+  [![Project Page](https://img.shields.io/badge/Project_Page-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mira-mmdeepresearch.github.io/)
+  [![Model](https://img.shields.io/badge/MIRA--SFT--35B--A3B-DA291C?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/MIRA-MMDeepResearch/MIRA-SFT-35B-A3B)
+  [![Data](https://img.shields.io/badge/MIRA_Data-DA291C?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/MIRA-MMDeepResearch)
+
+  [![Model License](https://img.shields.io/badge/Model_License-Apache_2.0-DA291C.svg)](https://huggingface.co/MIRA-MMDeepResearch/MIRA-SFT-35B-A3B)
+  [![Data License](https://img.shields.io/badge/Data_License-CC_BY--NC_4.0-8F1D14.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+  [![arXiv](https://img.shields.io/badge/arXiv-2610.25926-B31B1B.svg)](https://arxiv.org/abs/2610.25926)
+
+</div>
+
+---
 
 ## Setup
 
 Use Python 3.10 or later on Linux.
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
 pip install -r requirements.txt
 cp configs/secrets.example.yaml configs/secrets.yaml
-export MODELS_ROOT=/path/to/models
 ```
 
-Fill in your Serper and Jina keys in `configs/secrets.yaml`; set `llm.api_key` if your model server requires authentication. Configure the model URL and SandboxFusion endpoint in `configs/mira.yaml`.
+Configure your model name, OpenAI-compatible API endpoint, tokenizer directory and sandbox endpoint in [configs/mira.yaml](configs/mira.yaml), and your API keys in `configs/secrets.yaml`.
 
-Download the model to `$MODELS_ROOT/MIRA-SFT-35B-A3B`. For a local model server, run vLLM in a separate environment:
-
-```bash
-vllm serve "$MODELS_ROOT/MIRA-SFT-35B-A3B" --served-model-name MIRA \
-  --tensor-parallel-size 8 --max-model-len 262144 \
-  --enable-auto-tool-choice --tool-call-parser qwen3_xml \
-  --host 127.0.0.1 --port 8000
-```
-
-Start [SandboxFusion](https://bytedance.github.io/SandboxFusion/) with Pillow and NumPy available:
-
-```bash
-docker run --rm -d -p 127.0.0.1:8080:8080 volcengine/sandbox-fusion:server-20250609
-```
+Python execution uses [SandboxFusion](https://bytedance.github.io/SandboxFusion/) with Pillow and NumPy.
 
 Reverse image search uploads images to the public host configured by `image.lens_upload_endpoint` (Uguu by default).
 
